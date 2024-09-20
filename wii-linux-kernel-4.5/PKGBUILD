@@ -1,12 +1,31 @@
-pkgname=(wii-linux-kernel-4.5 wii-linux-kernel-stable)
+pkgname=wii-linux-kernel-stable
 pkgver=4.5.0
 pkgrel=1
 pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
-depends=wii-linux-loader-stable
+#depends=(wii-linux-loader-stable)
+makedepends=(wii-linux-toolchain)
 provides=(linux)
-source=("https://wii-linux.org/kernel-$pkgver.elf")
-# FIXME: update when a real build system is figured out
-sha256sums=("SKIP")
+#source=("https://wii-linux.org/kernel-$pkgver.elf")
+source=(
+	"git+https://github.com/Wii-Linux/wii-linux-ngx#branch=v4.5"
+	"git+https://github.com/Wii-Linux/build-stack"
+	"git+https://github.com/Wii-Linux/boot-stack"
+	"git+https://github.com/Wii-Linux/buildroot"
+)
+sha256sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+build() {
+
+}
+
+package() {
+	return
+}
