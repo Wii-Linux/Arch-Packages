@@ -1,0 +1,54 @@
+pkgname=wii-linux-toolchain
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A toolchain for compiling Wii Linux packages"
+arch=('x86_64' 'powerpc')
+url='https://wii-linux.org'
+license=(GPL-2.0-only)
+makedepends=(unzip help2man python wget)
+source=(
+	"${pkgname}-${pkgver}.tar.gz::https://github.com/Wii-Linux/wii-linux-toolchain/archive/main.tar.gz"
+	"http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.26.0.tar.xz"
+)
+sha256sums=(
+	"d03c6c92a277983974b7c6f4baec95b320f0febb05442db52469c4e35b19cb37"
+	"e8ce69c5c8ca8d904e6923ccf86c53576761b9cf219e2e69235b139c8e1b74fc"
+)
+
+build() {
+	# already built and installed
+	if [ -d ${srcdir}/build/x-tools ]; then
+		return
+	fi
+
+	# nuke old attemptsat building ct-ng
+	rm -rf ${srcdir}/ct-ng-tmp
+
+	cd ${srcdir}/crosstool-ng-1.26.0
+	rm -rf build
+	mkdir build
+	cd build
+
+	# build a fresh ct-ng
+	../configure --prefix=${srcdir}/ct-ng-tmp
+	make
+	make install
+
+	# nuke old toolchain build attempts
+	cd ${srcdir}
+	rm -rf build
+	mkdir build
+	cd build
+
+	cp ${srcdir}/wii-linux-toolchain-main/ct-ng.config .config
+	# they screw up the build, required to be empty for this step
+	unset CFLAGS LDFLAGS CXXFLAGS CPPFLAGS MAKEOPTS
+	${srcdir}/ct-ng-tmp/bin/ct-ng build
+	mv ~/x-tools ${srcdir}/build
+}
+
+package() {
+	mkdir -p "${pkgdir}/opt/wii-linux-toolchain"
+	chmod 755 "${pkgdir}/opt/wii-linux-toolchain"
+	cp -ra ${srcdir}/build/x-tools/powerpc-unknown-linux-gnu/* "${pkgdir}/opt/wii-linux-toolchain"
+}
