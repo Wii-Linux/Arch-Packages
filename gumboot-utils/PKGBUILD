@@ -1,0 +1,23 @@
+pkgname=gumboot-utils
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Clone of common GRUB utilities for Wii Linux's \"Gumboot\" bootloader"
+arch=('any')
+url='https://wii-linux.org'
+license=(GPL-2.0-only)
+# don't strip the gumboot binaries!
+options=(!strip)
+makedepends=(make wget)
+source=(
+	"git+https://github.com/Wii-Linux/gumboot-utils"
+)
+sha256sums=("SKIP")
+
+#build() {
+#	true
+#}
+
+package() {
+	cd ${srcdir}/gumboot-utils
+	make install DESTDIR="${pkgdir}"
+}
