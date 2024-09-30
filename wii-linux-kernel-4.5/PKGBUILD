@@ -5,27 +5,36 @@ pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
-#depends=(wii-linux-loader-stable)
-makedepends=(wii-linux-toolchain)
 provides=(linux)
-#source=("https://wii-linux.org/kernel-$pkgver.elf")
+_kernelname="v4_5_0"
 source=(
-	"git+https://github.com/Wii-Linux/wii-linux-ngx#branch=v4.5"
-	"git+https://github.com/Wii-Linux/build-stack"
-	"git+https://github.com/Wii-Linux/boot-stack"
-	"git+https://github.com/Wii-Linux/buildroot"
+	"https://wii-linux.org/files/wii_linux_kernel_${_kernelname}-latest.elf"
+	"https://wii-linux.org/files/wii_linux_modules_${_kernelname}-latest.tar.gz"
 )
 sha256sums=(
 	"SKIP"
 	"SKIP"
-	"SKIP"
-	"SKIP"
+)
+optdepeds=(
+	'gumboot: The Wii Linux bootloader, to boot this kernel'
 )
 
-build() {
+# don't try to strip the modules
+options=(!strip)
 
-}
-
+_kerneldesc="4.5.0 [Stable]"
 package() {
-	return
+	depends=(wii-linux-loader-stable)
+
+	mkdir -p "${pkgdir}/boot/wiilinux"
+	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_kernelname}.krn"
+	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
+
+	# XXX: this shouldn't be here, but too lazy to figure out why the kernel is doing it.
+	# nuke it here, before it gets packaged.
+	rm -rf "${pkgdir}/usr/lib/firmware"
+	
+
+	# set the kernel description for gumboot-utils
+	echo "$_kerneldesc" > "${pkgdir}/boot/wiilinux/${_kernelname}.txt"
 }

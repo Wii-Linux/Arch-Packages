@@ -1,0 +1,15 @@
+pkgname=wii-linux-loader-stable
+pkgver=4.5.0
+pkgrel=1
+pkgdesc="Stable release of the Wii Linux loader (for wii-linux-kernel-stable)"
+arch=('powerpc')
+url='https://wii-linux.org'
+license=(GPL-2.0-only)
+_kernelname="v4_5_0"
+source=("https://wii-linux.org/files/wii_linux_loader_${_kernelname}-latest.img")
+sha256sums=("SKIP")
+
+package() {
+	mkdir -p "${pkgdir}/boot/wiilinux"
+	cp "${srcdir}/wii_linux_loader_${_kernelname}-latest.img" "${pkgdir}/boot/wiilinux/${_kernelname}.ldr"
+}
