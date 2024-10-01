@@ -1,0 +1,51 @@
+pkgname=gumboot
+pkgver=0.7
+pkgrel=1
+pkgdesc="The Wii Linux bootloader"
+arch=('powerpc')
+url='https://github.com/Wii-Linux/gumboot'
+license=(GPL-2.0-only)
+source=(
+	"https://wii-linux.org/files/gumboot-toolchain.tar.gz"
+	"git+https://github.com/Wii-Linux/gumboot"
+	"https://github.com/neagix/wii-linux-ngx/releases/download/0.3.6/bootmii.tar.gz"
+)
+sha256sums=(
+	'd650b1e2c852d7e602dfb0be60729754ba0988234080bac8c317e0177f0e6fa1'
+	'SKIP'
+	'79807d4745d2b9e8b22cf63ef80de42b0eb8cca8768f9999aed5798b97815cad'
+)
+
+noextract=("gumboot-toolchain.tar.gz" "bootmii.tar.gz")
+
+optdepends=(
+	"gumboot-utils: Utilities to manage your gumboot install"
+)
+
+prepare() {
+	mkdir -p "${srcdir}/gumboot-toolchain"
+	mkdir -p "${srcdir}/bootmii"
+	tar xf "${srcdir}/gumboot-toolchain.tar.gz" -C "${srcdir}/gumboot-toolchain"
+	tar xf "${srcdir}/bootmii.tar.gz" -C "${srcdir}/bootmii"
+}
+
+build() {
+	if [ "$(uname -m)" != "x86_64" ]; then
+		echo "This requires a custom toolchain, and I'm too lazy to implement one for every possible architecture."
+		exit 1
+	fi
+
+	cd "${srcdir}/gumboot"
+	git submodule update --init
+
+	# this requires not using makepkg's toolchain, since it's cross compiling
+	unset CC CPP CXX LD CFLAGS LDFLAGS
+	WIIDEV="${srcdir}/gumboot-toolchain" make
+}
+
+package() {
+	mkdir -p "${pkgdir}/boot/gumboot"
+	mkdir -p "${pkgdir}/boot/bootmii"
+	cp "${srcdir}/gumboot/gumboot.elf" "${pkgdir}/boot/gumboot/gumboot.elf"
+	cp "${srcdir}/bootmii/bootmii/armboot.bin" "${pkgdir}/boot/bootmii/armboot.bin"
+}
