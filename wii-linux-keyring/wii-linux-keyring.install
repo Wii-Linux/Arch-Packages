@@ -1,0 +1,16 @@
+#!/bin/sh
+
+fixups() {
+	# since I am far too lazy to care about figuring out what the
+	# "correct" way to do this is - do it like this instead
+	pacman-key --populate wiilinux
+	pacman-key --lsign-key 8A2C86A4F73ACCE7DA740BA0F75F6C0E66A91D4A
+}
+
+post_install() {
+	fixups
+}
+
+post_upgrade() {
+	fixups
+}

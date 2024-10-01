@@ -1,0 +1,18 @@
+pkgname=wii-linux-keyring
+pkgver=1.0
+pkgrel=2
+pkgdesc="GPG keyring for Wii Linux repository"
+arch=('any')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+source=("wiilinux.gpg")
+sha256sums=('SKIP')
+install=$pkgname.install
+
+package() {
+    install -Dm644 "wiilinux.gpg" "$pkgdir/usr/share/pacman/keyrings/wiilinux.gpg"
+    # Create the keyring directory
+    install -Dm644 /dev/null "$pkgdir/usr/share/pacman/keyrings/wiilinux-trusted"
+    install -Dm644 /dev/null "$pkgdir/usr/share/pacman/keyrings/wiilinux-trusted.sig"
+}
+
