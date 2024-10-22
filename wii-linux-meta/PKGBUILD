@@ -1,6 +1,6 @@
 pkgname=wii-linux-meta
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Metapackage that depends on all things Wii Linux related"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -17,5 +17,12 @@ package() {
 		#helpmii
 	)
 
+	mkdir -p ${pkgdir}/etc/modules-load.d
+	cat << EOF > ${pkgdir}/etc/modules-load.d/wii-linux.conf
+# modules-load.d config for Wii Linux.
+
+# force load the b43 wifi driver, it doesn't load by default.
+b43
+EOF
 }
 
