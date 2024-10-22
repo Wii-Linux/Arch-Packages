@@ -1,0 +1,24 @@
+pkgname=wii-linux-firmware
+pkgver=1.0
+pkgrel=1
+pkgdesc="Package containing firmware files for Wii Linux"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(custom)
+
+source=(
+	https://wii-linux.org/openfwwf-5.2-bin.tar.gz
+	https://wii-linux.org/openfwwf-5.2-LICENSE.txt
+)
+
+sha256sums=('3081a55414a91e2266d9bbc05da0b5413917a0812a7da883cb85c71fba9c5c8e'
+            'ce7c9ef8e0b5fcf4a1731fde455dc9f058acf291b7117e63cd6043d90d3ed505')
+
+
+package() {
+	mkdir -p "${pkgdir}/usr/lib/firmware"
+	cp -r "${srcdir}/lib/firmware/b43-open" "${pkgdir}/usr/lib/firmware/b43-open"
+	
+	cp "${srcdir}/openfwwf-5.2-LICENSE.txt" "${pkgdir}/usr/lib/firmware/b43-open/LICENSE"
+}
+
