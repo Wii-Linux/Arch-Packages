@@ -1,10 +1,11 @@
 pkgname=wii-linux-meta
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Metapackage that depends on all things Wii Linux related"
 arch=('powerpc')
 url="https://wii-linux.org"
 license=(GPL-2.0-only)
+install=$pkgname.install
 
 package() {
 	depends=(
@@ -15,5 +16,6 @@ package() {
 		#configmii
 		#helpmii
 	)
+
 }
 
