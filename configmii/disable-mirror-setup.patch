@@ -1,0 +1,27 @@
+diff --git a/configmii.sh b/configmii.sh
+index 68e3a84..431d269 100755
+--- a/configmii.sh
++++ b/configmii.sh
+@@ -34,7 +34,6 @@ while true; do
+     "4" "Edit Initrd loader settings" \
+     "5" "Edit loader.img settings" \
+     "6" "Switch Xorg driver" \
+-    "7" "Configure package mirror" \
+     "0" "Quit" \
+     2>&1 1>&3)
+   exit_status=$?
+@@ -93,14 +92,6 @@ while true; do
+     6 )
+       exec ./xorgconf.sh
+       ;;
+-    7 )
+-      rm Chooser.sh
+-      clear
+-      printf "Downloading Package Repository Mirror Selector, please wait...\n\nIf no menu appears check your network settings or try again later or still no menu get a new wii jk jk.\nIf the issue persists join the Discord using the 'helpmii' command and\nask for help in the #support channel\n\n"
+-      wget -q https://files.thecheese.io/Mirrors%20for%20archpower-wii/Chooser.sh
+-      chmod +x Chooser.sh
+-      exec ./Chooser.sh
+-      ;;
+     0 )
+       clear
+       exit

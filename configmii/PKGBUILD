@@ -1,0 +1,32 @@
+pkgname=configmii
+pkgver=1.0
+pkgrel=1
+pkgdesc="Wii Linux Configuration Utility"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+
+source=(
+	'git+https://github.com/Wii-Linux/configmii'
+	'disable-mirror-setup.patch'
+)
+
+sha256sums=('SKIP'
+            '9b35b5cd1e31431736e9fbb546c98c076f24c60c5c95864ada349cc5e982a73c')
+
+
+package() {
+	depends=('dialog')
+
+	s="${srcdir}/configmii"
+	d="${pkgdir}/var/lib/wii-linux/configmii/"
+	mkdir -p "$d"
+	install -m0755 -t "$d/$f" "$s/configmii.sh" "$s/xorgconf.sh" "$s/placeholder.sh" "$s/LICENSE"
+
+	cp -r "$s/etc-issue" "$d/etc-issue"
+	chmod 0644 -R "$d/etc-issue"
+
+	cd "$d"
+	patch -p1 < "${srcdir}/disable-mirror-setup.patch"
+}
+
