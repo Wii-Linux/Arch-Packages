@@ -1,6 +1,6 @@
 pkgname=configmii
 pkgver=1.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -12,7 +12,7 @@ source=(
 )
 
 sha256sums=('SKIP'
-            '9b35b5cd1e31431736e9fbb546c98c076f24c60c5c95864ada349cc5e982a73c')
+            '3b60ac4b754bf1b30efbc315f3ad590dd98fd69e3623613b2002573f772f01b9')
 
 
 package() {

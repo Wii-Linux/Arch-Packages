@@ -1,5 +1,5 @@
 diff --git a/configmii.sh b/configmii.sh
-index 68e3a84..431d269 100755
+index 271b59b..d32d10a 100755
 --- a/configmii.sh
 +++ b/configmii.sh
 @@ -34,7 +34,6 @@ while true; do
@@ -15,12 +15,12 @@ index 68e3a84..431d269 100755
        exec ./xorgconf.sh
        ;;
 -    7 )
--      rm Chooser.sh
+-      rm ./mirrors.sh
 -      clear
--      printf "Downloading Package Repository Mirror Selector, please wait...\n\nIf no menu appears check your network settings or try again later or still no menu get a new wii jk jk.\nIf the issue persists join the Discord using the 'helpmii' command and\nask for help in the #support channel\n\n"
--      wget -q https://files.thecheese.io/Mirrors%20for%20archpower-wii/Chooser.sh
--      chmod +x Chooser.sh
--      exec ./Chooser.sh
+-      printf "Downloading Package Repository Mirror Selector, please wait...\n\nIf no menu appears check your network settings or try again later.\nIf the issue persists join the Discord server using the 'helpmii' command and\nask for help in the #support channel\n\n"
+-      wget -q http://pretzels.onthewifi.com/mirrors.sh ./mirrors.sh
+-      chmod +x ./mirrors.sh
+-      exec ./mirrors.sh
 -      ;;
      0 )
        clear
