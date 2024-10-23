@@ -1,0 +1,34 @@
+pkgname=helpmii
+pkgver=1.0
+pkgrel=1
+pkgdesc="Wii Linux Support Utility"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+
+source=(
+	'git+https://github.com/Wii-Linux/helpmii'
+)
+
+sha256sums=('SKIP')
+
+
+package() {
+	depends=('dialog')
+
+	s="${srcdir}/helpmii"
+	d="${pkgdir}/var/lib/wii-linux/helpmii/"
+	mkdir -p "$d"
+	install -m0755 -t "$d" "$s/helpmii.sh" "$s/reverseshell.sh"
+	install -m0644 -t "$d" "$s/LICENSE" "$s/placeholder.txt" "$s/discord_qr.txt" "$s/getstarted.txt"
+
+	mkdir -p "${pkgdir}/usr/bin"
+	cat << EOF > "${pkgdir}/usr/bin/helpmii"
+#!/bin/sh
+# HelpMii wrapper script
+cd /var/lib/wii-linux/helpmii
+exec ./helpmii.sh \$@
+EOF
+	chmod 0755 "${pkgdir}/usr/bin/helpmii"
+}
+
