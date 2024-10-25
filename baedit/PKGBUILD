@@ -1,0 +1,20 @@
+pkgname=baedit
+pkgver=1.0
+pkgrel=1
+pkgdesc="Techflash's \"baedit\" for Wii Linux"
+arch=('powerpc' 'x86_64')
+url='https://github.com/Wii-Linux/baedit'
+license=('GPL-2.0-only')
+source=("git+https://github.com/Wii-Linux/baedit")
+sha256sums=('SKIP')
+
+build() {
+	cd "${srcdir}/baedit"
+	make
+}
+
+package() {
+	mkdir -p "${pkgdir}/usr/bin/"
+	cp "${srcdir}/baedit/baedit" "${pkgdir}/usr/bin/baedit"
+	chmod 0755 "${pkgdir}/usr/bin/baedit"
+}
