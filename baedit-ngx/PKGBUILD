@@ -1,0 +1,25 @@
+pkgname=baedit-ngx
+pkgver=1.0
+pkgrel=1
+pkgdesc="neagix's \"baedit\" for wii-linux-ngx"
+arch=('powerpc')
+url='https://github.com/neagix/wii-linux-ngx'
+license=('unknown') # the wii-linux-ngx master branch does not have a LICENSE file.
+makedepends=('gcc-go')
+source=("https://github.com/neagix/wii-linux-ngx/archive/refs/heads/master.tar.gz")
+sha256sums=('c43168a2fe675d5e08e0eec2a89e1f4b64c497670df9792cb2e21c319c7cb4c5')
+
+prepare() {
+	sed -i 's/powerpc-linux-gnu-gccgo/powerpc-unknown-linux-gnu-gccgo/' wii-linux-ngx-master/baedit/Makefile
+}
+
+build() {
+	cd "${srcdir}/wii-linux-ngx-master/baedit"
+	make baedit-ppc
+}
+
+package() {
+	mkdir -p "${pkgdir}/usr/bin/"
+	cp "${srcdir}/wii-linux-ngx-master/baedit/baedit-ppc" "${pkgdir}/usr/bin/baedit-ngx"
+	chmod 0755 "${pkgdir}/usr/bin/baedit-ngx"
+}
