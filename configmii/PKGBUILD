@@ -1,19 +1,13 @@
 pkgname=configmii
-pkgver=1.0
-pkgrel=7
+pkgver=1.1
+pkgrel=1
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
 url="https://wii-linux.org"
 license=(GPL-2.0-only)
 
-source=(
-	'git+https://github.com/Wii-Linux/configmii'
-	'disable-mirror-setup.patch'
-)
-
-sha256sums=('SKIP'
-            '3b60ac4b754bf1b30efbc315f3ad590dd98fd69e3623613b2002573f772f01b9')
-
+source=('git+https://github.com/Wii-Linux/configmii')
+sha256sums=('SKIP')
 
 package() {
 	depends=('dialog')
@@ -26,9 +20,6 @@ package() {
 
 	cp -r "$s/etc-issue" "$d/etc-issue"
 	chmod 0644 -R "$d/etc-issue"
-
-	cd "$d"
-	patch -p1 < "${srcdir}/disable-mirror-setup.patch"
 
 	mkdir -p "${pkgdir}/usr/bin"
 	cat << EOF > "${pkgdir}/usr/bin/configmii"
