@@ -1,6 +1,6 @@
 pkgname=helpmii
 pkgver=1.0
-pkgrel=5
+pkgrel=6
 pkgdesc="Wii Linux Support Utility"
 arch=('powerpc')
 url="https://wii-linux.org"
