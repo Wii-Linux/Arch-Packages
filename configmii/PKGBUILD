@@ -1,5 +1,5 @@
 pkgname=configmii
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
@@ -10,12 +10,12 @@ source=('git+https://github.com/Wii-Linux/configmii')
 sha256sums=('SKIP')
 
 package() {
-	depends=('dialog')
+	depends=('dialog' 'wii-linux-common-dialog-utils')
 
 	s="${srcdir}/configmii"
 	d="${pkgdir}/var/lib/wii-linux/configmii/"
 	mkdir -p "$d"
-	install -m0755 -t "$d" "$s/configmii.sh" "$s/xorgconf.sh" "$s/placeholder.sh"
+	install -m0755 -t "$d" "$s/configmii.sh" "$s/xorgconf.sh" "$s/archpower-settings.sh" "$s/boot-settings.sh" "$s/loginbanner.sh"
 	install -m0644 -t "$d" "$s/LICENSE"
 
 	cp -r "$s/etc-issue" "$d/etc-issue"
@@ -26,7 +26,7 @@ package() {
 #!/bin/sh
 # ConfigMii helper script
 cd /var/lib/wii-linux/configmii
-exec ./configmii.sh
+exec ./configmii.sh \$@
 EOF
 	chmod 0755 "${pkgdir}/usr/bin/configmii"
 }
