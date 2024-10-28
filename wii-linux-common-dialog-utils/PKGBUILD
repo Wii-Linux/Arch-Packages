@@ -1,0 +1,24 @@
+pkgname=wii-linux-common-dialog-utils
+pkgver=1.0
+pkgrel=1
+pkgdesc="Wii Linux Support Utility"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+
+source=(
+	'git+https://github.com/Wii-Linux/common-util-scripts'
+)
+
+sha256sums=('SKIP')
+
+package() {
+	depends=('dialog')
+
+	s="${srcdir}/common-util-scripts"
+	d="${pkgdir}/var/lib/wii-linux"
+	mkdir -p "$d"
+	install -m0755 -t "$d/" "$s/util-dialog.sh"
+	install -m0644 "$s/LICENSE" "$d/LICENSE-common-dialog-utils"
+}
+
