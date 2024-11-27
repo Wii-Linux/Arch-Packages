@@ -1,0 +1,27 @@
+pkgname=wii-linux-configs
+pkgver=1.0
+pkgrel=1
+pkgdesc="Wii Linux Configuration files"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+source=(
+	./modules-load.conf
+	./zram-setup.sh
+	./99-zram.rules
+)
+
+sha256sums=('cd96bd01c92cf1cc2058ec5c3b920e0b35f30f07ad5b5512ad28460eb2092425'
+            '2b525300e87d6b7aa3d35550dea1c5c787dbe5fce1480150411b14902e5da369'
+            '093edeb515d16fdbe5e5955abb7db9367ebb3f076fcc6faf42b4239e5dcfa7b2')
+
+
+install=$pkgname.install
+
+package() {
+	mkdir -p "${pkgdir}/etc/udev/rules.d" "${pkgdir}/var/lib/wii-linux" "${pkgdir}/etc/modules-load.d"
+	cp "${srcdir}/99-zram.rules" "${pkgdir}/etc/udev/rules.d/99-zram.rules"
+	cp "${srcdir}/zram-setup.sh" "${pkgdir}/var/lib/wii-linux/zram-setup.sh"
+	cp "${srcdir}/modules-load.conf" "${pkgdir}/etc/modules-load.d/wii-linux.conf"
+}
+

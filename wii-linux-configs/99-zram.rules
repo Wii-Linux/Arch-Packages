@@ -1,0 +1,1 @@
+ACTION=="add", KERNEL=="zram0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="64M", RUN="/var/lib/wii-linux/zram-setup.sh /dev/%k", TAG+="systemd"

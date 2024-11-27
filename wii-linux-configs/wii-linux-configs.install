@@ -1,0 +1,15 @@
+#!/bin/sh
+
+fixups() {
+	if [ -f /etc/modules-load.d/zram.conf ] && [ "$(sha256sum /etc/modules-load.d/zram.conf)" = "7cae41d1a46eef0abc265d3ffc4dabefdbb9994f2169505dd84e754121496cb6" ]; then
+		rm /etc/modules-load.d/zram.conf
+	fi
+}
+
+post_install() {
+	fixups
+}
+
+post_upgrade() {
+	fixups
+}
