@@ -1,6 +1,6 @@
 pkgname=wii-linux-configs
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Wii Linux Configuration files"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -22,6 +22,7 @@ package() {
 	mkdir -p "${pkgdir}/etc/udev/rules.d" "${pkgdir}/var/lib/wii-linux" "${pkgdir}/etc/modules-load.d"
 	cp "${srcdir}/99-zram.rules" "${pkgdir}/etc/udev/rules.d/99-zram.rules"
 	cp "${srcdir}/zram-setup.sh" "${pkgdir}/var/lib/wii-linux/zram-setup.sh"
+	chmod 0755 "${pkgdir}/var/lib/wii-linux/zram-setup.sh"
 	cp "${srcdir}/modules-load.conf" "${pkgdir}/etc/modules-load.d/wii-linux.conf"
 }
 
