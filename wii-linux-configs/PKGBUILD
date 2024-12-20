@@ -1,5 +1,5 @@
 pkgname=wii-linux-configs
-pkgver=1.0
+pkgver=1.1
 pkgrel=2
 pkgdesc="Wii Linux Configuration files"
 arch=('powerpc')
@@ -8,21 +8,29 @@ license=(GPL-2.0-only)
 source=(
 	./modules-load.conf
 	./zram-setup.sh
+	./first-boot.sh
+	./first-boot.service
 	./99-zram.rules
 )
 
+
 sha256sums=('cd96bd01c92cf1cc2058ec5c3b920e0b35f30f07ad5b5512ad28460eb2092425'
             '2b525300e87d6b7aa3d35550dea1c5c787dbe5fce1480150411b14902e5da369'
+            '44e6168edf997048169b6f3660866f4f38081add98a4c9d5f31608c6ac9a34f6'
+            'bc4dd27d2a9985edb5b7435b5802ed083a0c8424e114f2917f5c6b758f409ecb'
             '093edeb515d16fdbe5e5955abb7db9367ebb3f076fcc6faf42b4239e5dcfa7b2')
 
 
 install=$pkgname.install
 
 package() {
-	mkdir -p "${pkgdir}/etc/udev/rules.d" "${pkgdir}/var/lib/wii-linux" "${pkgdir}/etc/modules-load.d"
+	mkdir -p "${pkgdir}/etc/udev/rules.d" "${pkgdir}/var/lib/wii-linux" "${pkgdir}/etc/modules-load.d" "${pkgdir}/usr/lib/systemd/system"
 	cp "${srcdir}/99-zram.rules" "${pkgdir}/etc/udev/rules.d/99-zram.rules"
 	cp "${srcdir}/zram-setup.sh" "${pkgdir}/var/lib/wii-linux/zram-setup.sh"
+	cp "${srcdir}/first-boot.sh" "${pkgdir}/var/lib/wii-linux/first-boot.sh"
+	cp "${srcdir}/first-boot.service" "${pkgdir}/usr/lib/systemd/system/wii-linux-first-boot.service"
 	chmod 0755 "${pkgdir}/var/lib/wii-linux/zram-setup.sh"
+	chmod 0755 "${pkgdir}/var/lib/wii-linux/first-boot.sh"
 	cp "${srcdir}/modules-load.conf" "${pkgdir}/etc/modules-load.d/wii-linux.conf"
 }
 

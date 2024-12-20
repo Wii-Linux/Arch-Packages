@@ -1,0 +1,9 @@
+[Unit]
+Description=Wii Linux first boot setup
+
+[Service]
+Type=oneshot
+ExecStart=/var/lib/wii-linux/first-boot.sh
+
+[Install]
+WantedBy=sysinit.target
