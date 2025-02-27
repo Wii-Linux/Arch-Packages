@@ -1,6 +1,6 @@
 pkgname=wii-linux-kernel-stable
 pkgver=4.5.0
-pkgrel=9
+pkgrel=10
 pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
 arch=('powerpc')
 url='https://wii-linux.org'
