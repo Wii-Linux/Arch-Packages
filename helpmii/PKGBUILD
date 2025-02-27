@@ -1,5 +1,5 @@
 pkgname=helpmii
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc="Wii Linux Support Utility"
 arch=('powerpc')
@@ -23,7 +23,7 @@ package() {
 	s="${srcdir}/helpmii"
 	d="${pkgdir}/var/lib/wii-linux/helpmii/"
 	mkdir -p "$d"
-	install -m0755 -t "$d" "$s/helpmii.sh" "$s/reverseshell.sh" "$s/dumplogs.sh"
+	install -m0755 -t "$d" "$s/helpmii.sh" "$s/dumplogs.sh"
 	install -m0644 -t "$d" "$s/LICENSE" "$s/discord_qr.txt" "$s/getstarted.txt"
 
 	mkdir -p "${pkgdir}/usr/bin"
