@@ -1,5 +1,5 @@
 pkgname=configmii
-pkgver=1.2
+pkgver=1.3
 pkgrel=1
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
@@ -15,7 +15,7 @@ package() {
 	s="${srcdir}/configmii"
 	d="${pkgdir}/var/lib/wii-linux/configmii/"
 	mkdir -p "$d"
-	install -m0755 -t "$d" "$s/configmii.sh" "$s/xorgconf.sh" "$s/archpower-settings.sh" "$s/boot-settings.sh" "$s/loginbanner.sh"
+	install -m0755 -t "$d" "$s/configmii.sh" "$s/archpower-settings.sh" "$s/boot-settings.sh" "$s/loginbanner.sh" "$s/de-installer.sh"
 	install -m0644 -t "$d" "$s/LICENSE"
 
 	cp -r "$s/etc-issue" "$d/etc-issue"
