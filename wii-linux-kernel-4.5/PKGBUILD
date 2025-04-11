@@ -27,7 +27,7 @@ options=(!strip)
 
 _kerneldesc="4.5.0 [Legacy]"
 package() {
-	depends=(wii-linux-loader-stable)
+	depends=(wii-linux-loader-legacy)
 
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
