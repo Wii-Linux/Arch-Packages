@@ -1,0 +1,43 @@
+pkgname=wii-linux-kernel-stable
+pkgver=4.19.325
+pkgrel=1
+pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
+arch=('powerpc')
+url='https://wii-linux.org'
+license=(GPL-2.0-only)
+provides=(linux)
+_kernelname="v4_19_325"
+_out_name="v4_19325"
+install=wii-linux-kernel-4.19.install
+
+source=(
+	"https://wii-linux.org/files/wii_linux_kernel_${_kernelname}-latest.elf"
+	"https://wii-linux.org/files/wii_linux_modules_${_kernelname}-latest.tar.gz"
+)
+sha256sums=(
+	"SKIP"
+	"SKIP"
+)
+optdepeds=(
+	'gumboot: The Wii Linux bootloader, to boot this kernel'
+)
+
+# don't try to strip the modules
+options=(!strip)
+
+_kerneldesc="4.19.325 [Stable]"
+package() {
+	depends=(wii-linux-loader-stable)
+
+	mkdir -p "${pkgdir}/boot/wiilinux"
+	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
+	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
+
+	# XXX: this shouldn't be here, but too lazy to figure out why the kernel is doing it.
+	# nuke it here, before it gets packaged.
+	rm -rf "${pkgdir}/usr/lib/firmware"
+	
+
+	# set the kernel description for gumboot-utils
+	echo "$_kerneldesc" > "${pkgdir}/boot/wiilinux/${_out_name}.txt"
+}
