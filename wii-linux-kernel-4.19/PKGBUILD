@@ -1,5 +1,5 @@
 pkgname=wii-linux-kernel-stable
-pkgver=4.19.325
+pkgver=4.19.325_cip122
 pkgrel=1
 pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
 arch=('powerpc')
@@ -27,8 +27,6 @@ options=(!strip)
 
 _kerneldesc="4.19.325 [Stable]"
 package() {
-	depends=(wii-linux-loader-stable)
-
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
 	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
