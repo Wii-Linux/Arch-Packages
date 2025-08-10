@@ -27,6 +27,8 @@ options=(!strip)
 
 _kerneldesc="4.19.325 [Stable]"
 package() {
+	conflicts=(wii-linux-loader-stable)
+	replaces=(wii-linux-loader-stable)
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
 	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
