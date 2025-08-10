@@ -1,5 +1,5 @@
 pkgname=wii-linux-common-dialog-utils
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
 pkgdesc="Wii Linux Support Utility"
 arch=('powerpc')
