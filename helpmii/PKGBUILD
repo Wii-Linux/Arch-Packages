@@ -1,5 +1,5 @@
 pkgname=helpmii
-pkgver=1.2
+pkgver=1.3
 pkgrel=1
 pkgdesc="Wii Linux Support Utility"
 arch=('powerpc')
@@ -17,7 +17,7 @@ package() {
 	depends=(
 		'dialog'
 		'less'
-		'wii-linux-common-dialog-utils'
+		'wii-linux-common-dialog-utils>=1.1'
 	)
 
 	s="${srcdir}/helpmii"
