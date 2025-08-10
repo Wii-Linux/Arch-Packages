@@ -1,6 +1,6 @@
 pkgname=configmii
 pkgver=1.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -10,7 +10,7 @@ source=('git+https://github.com/Wii-Linux/configmii')
 sha256sums=('SKIP')
 
 package() {
-	depends=('dialog' 'wii-linux-common-dialog-utils')
+	depends=('dialog' 'wii-linux-common-dialog-utils>=1.1')
 
 	s="${srcdir}/configmii"
 	d="${pkgdir}/var/lib/wii-linux/configmii/"
