@@ -1,6 +1,6 @@
 pkgname=mmio-tool
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="MMIO Tool for Wii-Linux"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -15,6 +15,7 @@ makedepends=(
 	'gcc'
 	'binutils'
 	'glibc'
+	'git'
 )
 
 
