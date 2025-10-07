@@ -1,6 +1,6 @@
 pkgname=configmii
-pkgver=1.5.0
-pkgrel=2
+pkgver=1.5.2
+pkgrel=1
 pkgdesc="Wii Linux Configuration Utility"
 arch=('powerpc')
 url="https://wii-linux.org"
