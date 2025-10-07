@@ -1,0 +1,30 @@
+pkgname=mmio-tool
+pkgver=1.0
+pkgrel=1
+pkgdesc="MMIO Tool for Wii-Linux"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+
+source=(
+	'git+https://github.com/Wii-Linux/mmio-tool'
+)
+
+sha256sums=('SKIP')
+makedepends=(
+	'gcc'
+	'binutils'
+	'glibc'
+)
+
+
+build() {
+	cd "${srcdir}/mmio-tool"
+	"${CHOST}-gcc" ${CFLAGS} -o mmio-tool mmio-tool.c
+}
+
+package() {
+	mkdir -p "${pkgdir}/usr/bin"
+	install -m0755 -t "${pkgdir}/usr/bin" "${srcdir}/mmio-tool/mmio-tool"
+}
+
