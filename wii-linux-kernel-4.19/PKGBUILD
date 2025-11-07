@@ -4,15 +4,15 @@ pkgname=(
 	"$pkgbase-headers"
 )
 
-pkgver=4.19.325_cip124
-pkgrel=2
+pkgver=4.19.325_cip125
+pkgrel=1
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
 provides=(linux)
 _kernelname="v4_19_325"
 _out_name="v4_19325"
-_modname="4.19.325-cip124-st8-wii+"
+_modname="4.19.325-cip125-st9-wii+"
 install=wii-linux-kernel-4.19.install
 
 source=(
