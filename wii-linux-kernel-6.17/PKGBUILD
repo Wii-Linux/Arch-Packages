@@ -1,0 +1,72 @@
+pkgbase=wii-linux-kernel-testing
+pkgname=(
+	"$pkgbase"
+	"$pkgbase-headers"
+)
+
+pkgver=6.17.7
+pkgrel=1
+arch=('powerpc')
+url='https://wii-linux.org'
+license=(GPL-2.0-only)
+provides=(linux)
+_kernelname="v6_17_7"
+_out_name="v6_17_7"
+_modname="6.17.7-wii+"
+install=wii-linux-kernel-6.17.install
+
+source=(
+	"https://wii-linux.org/files/wii_linux_kernel_${_kernelname}-latest.elf"
+	"https://wii-linux.org/files/wii_linux_modules_${_kernelname}-latest.tar.gz"
+	"https://wii-linux.org/files/wii_linux_headers_${_kernelname}-latest.tar.gz"
+)
+sha256sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+# don't try to strip the modules
+options=(!strip)
+
+_kerneldesc="6.17.7 [Testing]"
+_package() {
+	pkgdesc="Testing release of the Wii Linux kernel (Linux $pkgver edition)"
+	optdepeds=(
+		'gumboot: The Wii Linux bootloader, to boot this kernel'
+		'wii-linux-kernel-testing-headers: Headers for this kernel'
+	)
+
+	conflicts=(wii-linux-loader-stable)
+	replaces=(wii-linux-loader-stable)
+	mkdir -p "${pkgdir}/boot/wiilinux"
+	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
+	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
+
+	# XXX: this shouldn't be here, but too lazy to figure out why the kernel is doing it.
+	# nuke it here, before it gets packaged.
+	rm -rf "${pkgdir}/usr/lib/firmware"
+	
+
+	# set the kernel description for gumboot-utils
+	echo "$_kerneldesc" > "${pkgdir}/boot/wiilinux/${_out_name}.txt"
+}
+_package-headers() {
+	pkgdesc="Kernel headers for $pkgbase"
+	depends=($pkgbase)
+	provides=(linux-headers)
+	conflicts=(linux-headers)
+
+	mkdir -p "${pkgdir}/usr/lib/modules/${_modname}/build"
+	tar xf "${srcdir}/wii_linux_headers_${_kernelname}-latest.tar.gz" -C "${pkgdir}/usr/lib/modules/${_modname}/build"
+
+	mkdir -p "${pkgdir}/usr/src"
+	ln -s "/usr/lib/modules/${_modname}/build" "${pkgdir}/usr/src/linux"
+}
+
+for _p in "${pkgname[@]}"; do
+	eval "package_$_p() {
+		$(declare -f "_package${_p#$pkgbase}")
+		_package${_p#$pkgbase}
+	}"
+done
+
