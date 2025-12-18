@@ -1,5 +1,5 @@
 pkgname=mmio-tool
-pkgver=1.1
+pkgver=1.1.1
 pkgrel=1
 pkgdesc="MMIO Tool for Wii-Linux"
 arch=('powerpc')
