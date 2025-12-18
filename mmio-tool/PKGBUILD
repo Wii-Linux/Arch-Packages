@@ -1,6 +1,6 @@
 pkgname=mmio-tool
-pkgver=1.0
-pkgrel=2
+pkgver=1.1
+pkgrel=1
 pkgdesc="MMIO Tool for Wii-Linux"
 arch=('powerpc')
 url="https://wii-linux.org"
