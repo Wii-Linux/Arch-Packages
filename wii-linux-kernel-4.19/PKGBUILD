@@ -5,7 +5,7 @@ pkgname=(
 )
 
 pkgver=4.19.325_cip126
-pkgrel=3
+pkgrel=4
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
@@ -36,7 +36,7 @@ _package() {
 		'wii-linux-kernel-stable-headers: Headers for this kernel'
 	)
 
-	conflicts=(wii-linux-loader-stable)
+	conflicts=('systemd>=258' 'systemd-libs>=258' 'systemd-sysvcompat>=258' 'wii-linux-loader-stable')
 	replaces=(wii-linux-loader-stable)
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
