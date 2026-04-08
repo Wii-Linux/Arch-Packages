@@ -1,7 +1,7 @@
 pkgbase=npll
 pkgname=(npll npll-mini)
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Universal Nintendo PowerPC Linux Bootloader"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -39,8 +39,8 @@ package_npll() {
 }
 
 package_npll-mini() {
-	# technically not true but we also need to rip out gumboot-utils since it depends on gumboot
-	conflicts=(gumboot gumboot-utils)
+	# as a hack to refer to the actual gumboot package; pkgrel will always be >=50 on npll-gumboot-legacy
+	conflicts=(gumboot-mini 'gumboot<=0.7-49')
 	mkdir -p "${pkgdir}/boot/bootmii"
 	cp "${srcdir}/NPLL/external/mini/armboot.bin" "${pkgdir}/boot/bootmii/armboot.bin"
 }

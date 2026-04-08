@@ -1,7 +1,7 @@
 pkgbase = npll
 	pkgdesc = Universal Nintendo PowerPC Linux Bootloader
 	pkgver = 0.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://wii-linux.org
 	arch = powerpc
 	license = GPL-2.0-only
@@ -19,5 +19,5 @@ pkgname = npll
 	provides = wii-linux-bootloader
 
 pkgname = npll-mini
-	conflicts = gumboot
-	conflicts = gumboot-utils
+	conflicts = gumboot-mini
+	conflicts = gumboot<=0.7-49
