@@ -1,0 +1,17 @@
+pkgbase = wii-linux-meta
+	pkgdesc = Metapackage that depends on all things Wii Linux related
+	pkgver = 1.1
+	pkgrel = 2
+	url = https://wii-linux.org
+	arch = powerpc
+	license = GPL-2.0-only
+
+pkgname = wii-linux-meta
+	depends = base
+	depends = wii-linux-kernel-stable
+	depends = wii-linux-keyring
+	depends = wii-linux-firmware
+	depends = wii-linux-configs
+	depends = wii-linux-bootloader
+	depends = configmii
+	depends = helpmii

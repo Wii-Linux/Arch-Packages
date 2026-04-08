@@ -1,6 +1,6 @@
 pkgname=wii-linux-meta
 pkgver=1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Metapackage that depends on all things Wii Linux related"
 arch=('powerpc')
 url="https://wii-linux.org"
@@ -13,7 +13,7 @@ package() {
 		wii-linux-keyring
 		wii-linux-firmware
 		wii-linux-configs
-		gumboot
+		wii-linux-bootloader
 		configmii
 		helpmii
 	)
