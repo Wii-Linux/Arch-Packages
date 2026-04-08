@@ -1,7 +1,7 @@
 pkgname=gumboot
 pkgver=0.7
-pkgrel=1
-pkgdesc="The Wii Linux bootloader"
+pkgrel=2
+pkgdesc="The legacy Wii-Linux bootloader"
 arch=('powerpc')
 url='https://github.com/Wii-Linux/gumboot'
 license=(GPL-2.0-only)
@@ -21,6 +21,7 @@ noextract=("gumboot-toolchain.tar.gz" "bootmii.tar.gz")
 optdepends=(
 	"gumboot-utils: Utilities to manage your gumboot install"
 )
+provides=(wii-linux-bootloader)
 
 prepare() {
 	mkdir -p "${srcdir}/gumboot-toolchain"
