@@ -17,8 +17,6 @@ pkgbase = npll
 pkgname = npll
 	depends = npll-mini
 	provides = wii-linux-bootloader
-	conflicts = gumboot
-	conflicts = gumboot-utils
 
 pkgname = npll-mini
 	conflicts = gumboot

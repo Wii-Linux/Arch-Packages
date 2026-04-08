@@ -34,13 +34,12 @@ build() {
 package_npll() {
 	depends=(npll-mini)
 	provides=(wii-linux-bootloader)
-	# technically not true but we also need to rip out gumboot-utils since it depends on gumboot
-	conflicts=(gumboot gumboot-utils)
 	mkdir -p "${pkgdir}/boot"
 	cp "${srcdir}/NPLL/bin/npll.elf" "${pkgdir}/boot/npll.elf"
 }
 
 package_npll-mini() {
+	# technically not true but we also need to rip out gumboot-utils since it depends on gumboot
 	conflicts=(gumboot gumboot-utils)
 	mkdir -p "${pkgdir}/boot/bootmii"
 	cp "${srcdir}/NPLL/external/mini/armboot.bin" "${pkgdir}/boot/bootmii/armboot.bin"
