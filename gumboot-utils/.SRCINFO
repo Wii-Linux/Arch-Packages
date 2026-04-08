@@ -1,0 +1,13 @@
+pkgbase = gumboot-utils
+	pkgdesc = Clone of common GRUB utilities for Wii Linux's "Gumboot" bootloader
+	pkgver = 0.1.0
+	pkgrel = 3
+	url = https://wii-linux.org
+	arch = any
+	license = GPL-2.0-only
+	makedepends = make
+	source = git+https://github.com/Wii-Linux/gumboot-utils
+	sha256sums = SKIP
+
+pkgname = gumboot-utils
+	depends = wii-linux-bootloader
