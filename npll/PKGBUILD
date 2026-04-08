@@ -1,14 +1,14 @@
 pkgbase=npll
 pkgname=(npll npll-mini)
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Universal Nintendo PowerPC Linux Bootloader"
 arch=('powerpc')
 url="https://wii-linux.org"
 license=(GPL-2.0-only)
 
 source=(
-	'git+https://github.com/Wii-Linux/NPLL'
+	"git+https://github.com/Wii-Linux/NPLL#tag=v${pkgver}"
 )
 
 sha256sums=('SKIP')
