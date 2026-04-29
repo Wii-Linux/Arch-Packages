@@ -1,6 +1,6 @@
 pkgname=npll-gumboot-legacy
 pkgver=0.7
-pkgrel=50
+pkgrel=51
 pkgdesc="The legacy Wii-Linux bootloader, for compatibility with NPLL"
 arch=('powerpc')
 url='https://github.com/Wii-Linux/gumboot'
@@ -23,7 +23,6 @@ optdepends=(
 )
 provides=(wii-linux-bootloader gumboot)
 conflicts=(gumboot)
-replaces=(gumboot)
 
 prepare() {
 	mkdir -p "${srcdir}/gumboot-toolchain"
@@ -47,6 +46,7 @@ build() {
 }
 
 package() {
+	depends=(npll npll-mini)
 	mkdir -p "${pkgdir}/boot/gumboot"
 	mkdir -p "${pkgdir}/boot/bootmii"
 	cp "${srcdir}/gumboot/gumboot.elf" "${pkgdir}/boot/gumboot/gumboot.elf"
