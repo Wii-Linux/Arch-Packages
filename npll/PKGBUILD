@@ -1,6 +1,6 @@
 pkgbase=npll
 pkgname=(npll npll-mini)
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Universal Nintendo PowerPC Linux Bootloader"
 arch=('powerpc')
