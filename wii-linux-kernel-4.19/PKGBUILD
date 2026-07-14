@@ -5,7 +5,7 @@ pkgname=(
 )
 
 pkgver=4.19.325_cip131
-pkgrel=3
+pkgrel=4
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
