@@ -1,4 +1,4 @@
-pkgbase=wii-linux-kernel-testing
+pkgbase=wii-linux-kernel-stable
 pkgname=(
 	"$pkgbase"
 	"$pkgbase-headers"
@@ -28,12 +28,12 @@ sha256sums=(
 # don't try to strip the modules
 options=(!strip)
 
-_kerneldesc="7.1.2 [Testing]"
+_kerneldesc="7.1.2 [Stable]"
 _package() {
-	pkgdesc="Testing release of the Wii Linux kernel (Linux $pkgver edition)"
+	pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
 	optdepeds=(
 		'gumboot: The Wii Linux bootloader, to boot this kernel'
-		'wii-linux-kernel-testing-headers: Headers for this kernel'
+		'wii-linux-kernel-stable-headers: Headers for this kernel'
 	)
 
 	conflicts=(wii-linux-loader-stable)
