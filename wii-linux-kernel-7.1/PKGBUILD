@@ -30,14 +30,15 @@ options=(!strip)
 
 _kerneldesc="7.1.2 [Stable]"
 _package() {
-	pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
+	pkgdesc="Stable release of the Wii-Linux kernel (Linux $pkgver edition)"
 	optdepeds=(
-		'gumboot: The Wii Linux bootloader, to boot this kernel'
+		'npll: the Wii-Linux bootloader, to boot this kernel'
+		'gumboot: The Legacy Wii-Linux bootloader, to boot this kernel'
 		'wii-linux-kernel-stable-headers: Headers for this kernel'
 	)
 
 	conflicts=(wii-linux-loader-stable)
-	replaces=(wii-linux-loader-stable)
+	replaces=(wii-linux-loader-stable 'wii-linux-kernel-testing<=7.1.2-1')
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
 	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
