@@ -1,4 +1,4 @@
-pkgbase=wii-linux-kernel-stable
+pkgbase=wii-linux-kernel-legacy
 pkgname=(
 	"$pkgbase"
 	"$pkgbase-headers"
@@ -28,12 +28,12 @@ sha256sums=(
 # don't try to strip the modules
 options=(!strip)
 
-_kerneldesc="4.19.325 [Stable]"
+_kerneldesc="4.19.325 [Legacy]"
 _package() {
-	pkgdesc="Stable release of the Wii Linux kernel (Linux $pkgver edition)"
+	pkgdesc="Legacy release of the Wii Linux kernel (Linux $pkgver edition)"
 	optdepeds=(
 		'gumboot: The Wii Linux bootloader, to boot this kernel'
-		'wii-linux-kernel-stable-headers: Headers for this kernel'
+		'wii-linux-kernel-legacy-headers: Headers for this kernel'
 	)
 
 	conflicts=('systemd>=258' 'systemd-libs>=258' 'wii-linux-loader-stable')
