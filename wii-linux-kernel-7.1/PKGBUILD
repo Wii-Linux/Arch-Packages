@@ -4,15 +4,15 @@ pkgname=(
 	"$pkgbase-headers"
 )
 
-pkgver=7.1.2
-pkgrel=2
+pkgver=7.1.3
+pkgrel=1
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
 provides=(linux)
-_kernelname="v7_1_2"
-_out_name="v7_1_2"
-_modname="7.1.2-wii+"
+_kernelname="v7_1_3"
+_out_name="v7_1_3"
+_modname="7.1.3-wii+"
 install=wii-linux-kernel-7.1.install
 
 source=(
@@ -28,7 +28,7 @@ sha256sums=(
 # don't try to strip the modules
 options=(!strip)
 
-_kerneldesc="7.1.2 [Stable]"
+_kerneldesc="7.1.3 [Stable]"
 _package() {
 	pkgdesc="Stable release of the Wii-Linux kernel (Linux $pkgver edition)"
 	optdepeds=(
