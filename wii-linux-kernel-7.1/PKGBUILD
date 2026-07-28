@@ -4,23 +4,25 @@ pkgname=(
 	"$pkgbase-headers"
 )
 
-pkgver=7.1.3
-pkgrel=2
+pkgver=7.1.5
+pkgrel=1
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
 provides=(linux)
-_kernelname="v7_1_3"
-_out_name="v7_1_3"
-_modname="7.1.3-wii+"
+_kernelname="v7_1_5"
+_out_name="v7_1_5"
+_modname="7.1.5-wii+"
 install=wii-linux-kernel-7.1.install
 
 source=(
 	"https://wii-linux.org/files/wii_linux_kernel_${_kernelname}-latest.elf"
 	"https://wii-linux.org/files/wii_linux_modules_${_kernelname}-latest.tar.gz"
 	"https://wii-linux.org/files/wii_linux_headers_${_kernelname}-latest.tar.gz"
+	"https://wii-linux.org/files/wii_linux_dtb_${_kernelname}-latest.dtb"
 )
 sha256sums=(
+	"SKIP"
 	"SKIP"
 	"SKIP"
 	"SKIP"
@@ -28,7 +30,7 @@ sha256sums=(
 # don't try to strip the modules
 options=(!strip)
 
-_kerneldesc="7.1.3 [Stable]"
+_kerneldesc="7.1.5 [Stable]"
 _package() {
 	pkgdesc="Stable release of the Wii-Linux kernel (Linux $pkgver edition)"
 	optdepeds=(
@@ -41,6 +43,7 @@ _package() {
 	replaces=(wii-linux-loader-stable 'wii-linux-kernel-testing<=7.1.2-1')
 	mkdir -p "${pkgdir}/boot/wiilinux"
 	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
+	cp "${srcdir}/wii_linux_dtb_${_kernelname}-latest.dtb" "${pkgdir}/boot/wiilinux/${_out_name}.dtb"
 	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
 
 	# XXX: this shouldn't be here, but too lazy to figure out why the kernel is doing it.
