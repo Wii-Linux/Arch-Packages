@@ -1,0 +1,12 @@
+pkgbase = wii-linux-utils
+	pkgdesc = Small utilities that other Wii-Linux projects use
+	pkgver = 1.0
+	pkgrel = 1
+	url = https://wii-linux.org
+	arch = powerpc
+	license = GPL-2.0-only
+	makedepends = git
+	source = git+https://github.com/Wii-Linux/wii-linux-utils#tag=v1.0
+	sha256sums = SKIP
+
+pkgname = wii-linux-utils

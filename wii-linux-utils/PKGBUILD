@@ -1,0 +1,19 @@
+pkgname=wii-linux-utils
+pkgver=1.0
+pkgrel=1
+pkgdesc="Small utilities that other Wii-Linux projects use"
+arch=('powerpc')
+url="https://wii-linux.org"
+license=(GPL-2.0-only)
+
+source=('git+https://github.com/Wii-Linux/wii-linux-utils#tag=v1.0')
+
+sha256sums=('SKIP')
+makedepends=('git')
+
+package() {
+	mkdir -p "${pkgdir}/usr/bin"
+	install -m0755 -t "${pkgdir}/usr/bin" "${srcdir}/wii-linux-utils/wii-boot-path"
+	install -m0755 -t "${pkgdir}/usr/bin" "${srcdir}/wii-linux-utils/wii-boot-layout"
+}
+
