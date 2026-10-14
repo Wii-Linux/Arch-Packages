@@ -1,0 +1,12 @@
+pkgbase = ceil1ng_cat
+	pkgdesc = The PowerPC-side BootMii GUI
+	pkgver = 1.5
+	pkgrel = 1
+	url = https://bootmii.org
+	arch = powerpc
+	license = Proprietary
+	source = https://github.com/AndrewPiroli/andrewpiroli.github.io/raw/refs/heads/master/assets/static/bootmii_sd_files.zip
+	sha256sums = d81260e638216ed0321888933075493e8073ddf0e36ef128578de15b175c174c
+
+pkgname = ceil1ng_cat
+	install = ceil1ng_cat.install

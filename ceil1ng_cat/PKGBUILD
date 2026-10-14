@@ -1,0 +1,20 @@
+pkgname=ceil1ng_cat
+pkgver=1.5
+pkgrel=1
+pkgdesc="The PowerPC-side BootMii GUI"
+arch=('powerpc')
+url="https://bootmii.org"
+license=(Proprietary)
+
+# fail0verflow does not host direct downloads for CEIL1NG_CAT, but they
+# are rehosted here.
+source=('https://github.com/AndrewPiroli/andrewpiroli.github.io/raw/refs/heads/master/assets/static/bootmii_sd_files.zip')
+sha256sums=('d81260e638216ed0321888933075493e8073ddf0e36ef128578de15b175c174c')
+
+package() {
+	install=ceil1ng_cat.install
+	cd "${srcdir}/bootmii"
+	mkdir -p "${pkgdir}/usr/lib/bootmii"
+	install -m0755 -t "${pkgdir}/usr/lib/bootmii" "${srcdir}/bootmii/ppcboot.elf"
+}
+
