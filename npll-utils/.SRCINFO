@@ -1,0 +1,15 @@
+pkgbase = npll-utils
+	pkgdesc = Clone of common GRUB utilities for Wii-Linux's "NPLL" bootloader
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://wii-linux.org
+	arch = any
+	license = GPL-2.0-only
+	makedepends = git
+	makedepends = make
+	source = git+https://github.com/Wii-Linux/npll-utils
+	sha256sums = SKIP
+
+pkgname = npll-utils
+	depends = npll
+	depends = wii-linux-utils
