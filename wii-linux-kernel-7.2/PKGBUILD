@@ -5,7 +5,7 @@ pkgname=(
 )
 
 pkgver=7.2.3
-pkgrel=1
+pkgrel=2
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
@@ -28,7 +28,7 @@ sha256sums=(
 	"SKIP"
 )
 # don't try to strip the modules
-options=(!strip)
+options=(!strip !debug)
 
 _kerneldesc="$pkgver [Stable]"
 _package() {
@@ -39,11 +39,13 @@ _package() {
 		'wii-linux-kernel-stable-headers: Headers for this kernel'
 	)
 
+	depends=(wii-linux-utils)
 	conflicts=(wii-linux-loader-stable)
 	replaces=(wii-linux-loader-stable 'wii-linux-kernel-testing<=7.1.2-1')
-	mkdir -p "${pkgdir}/boot/wiilinux"
-	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${pkgdir}/boot/wiilinux/${_out_name}.krn"
-	cp "${srcdir}/wii_linux_dtb_${_kernelname}-latest.dtb" "${pkgdir}/boot/wiilinux/${_out_name}.dtb"
+	instpath="${pkgdir}/usr/lib/wii-linux/kernel"
+	mkdir -p "$instpath"
+	cp "${srcdir}/wii_linux_kernel_${_kernelname}-latest.elf" "${instpath}/${_out_name}.krn"
+	cp "${srcdir}/wii_linux_dtb_${_kernelname}-latest.dtb" "${instpath}/${_out_name}.dtb"
 	tar xf "${srcdir}/wii_linux_modules_${_kernelname}-latest.tar.gz" -C "${pkgdir}/"
 
 	# XXX: this shouldn't be here, but too lazy to figure out why the kernel is doing it.
@@ -52,7 +54,7 @@ _package() {
 	
 
 	# set the kernel description for gumboot-utils
-	echo "$_kerneldesc" > "${pkgdir}/boot/wiilinux/${_out_name}.txt"
+	echo "$_kerneldesc" > "${instpath}/${_out_name}.txt"
 }
 _package-headers() {
 	pkgdesc="Kernel headers for $pkgbase"

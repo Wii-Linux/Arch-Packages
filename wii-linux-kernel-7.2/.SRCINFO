@@ -1,0 +1,31 @@
+pkgbase = wii-linux-kernel-stable
+	pkgver = 7.2.3
+	pkgrel = 2
+	url = https://wii-linux.org
+	install = wii-linux-kernel-7.2.install
+	arch = powerpc
+	license = GPL-2.0-only
+	provides = linux
+	options = !strip
+	options = !debug
+	source = https://wii-linux.org/files/wii_linux_kernel_v7_2_3-latest.elf
+	source = https://wii-linux.org/files/wii_linux_modules_v7_2_3-latest.tar.gz
+	source = https://wii-linux.org/files/wii_linux_headers_v7_2_3-latest.tar.gz
+	source = https://wii-linux.org/files/wii_linux_dtb_v7_2_3-latest.dtb
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = wii-linux-kernel-stable
+	pkgdesc = Stable release of the Wii-Linux kernel (Linux 7.2.3 edition)
+	depends = wii-linux-utils
+	conflicts = wii-linux-loader-stable
+	replaces = wii-linux-loader-stable
+	replaces = wii-linux-kernel-testing<=7.1.2-1
+
+pkgname = wii-linux-kernel-stable-headers
+	pkgdesc = Kernel headers for wii-linux-kernel-stable
+	depends = wii-linux-kernel-stable
+	provides = linux-headers
+	conflicts = linux-headers
