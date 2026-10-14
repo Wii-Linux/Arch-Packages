@@ -1,0 +1,22 @@
+#!/bin/sh
+
+common() {
+	bootpath="$(wii-boot-path)"
+	instpath="/usr/lib/npll"
+
+	cp "${instpath}/npll_virtvma_physlma_physentry.elf" "${bootpath}/npll.elf"
+	mkdir -p "${bootpath}/bootmii"
+	cp "${instpath}/armboot.bin" "${bootpath}/bootmii/armboot.bin"
+	#mkdir -p "${bootpath}/apps/npll"
+	#cp "${instpath}/npll_virt.dol" "${bootpath}/apps/npll/boot.dol"
+	#cp "${instpath}/icon.png" "${bootpath}/apps/npll/icon.png"
+	#cp "${instpath}/meta.xml" "${bootpath}/apps/npll/meta.xml"
+}
+
+post_install() {
+	common
+}
+
+post_upgrade() {
+	common
+}
