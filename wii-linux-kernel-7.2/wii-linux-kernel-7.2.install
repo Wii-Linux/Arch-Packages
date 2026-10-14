@@ -3,7 +3,7 @@
 path="$(wii-boot-path)"
 layout="$(wii-boot-layout)"
 instpath="/usr/lib/wii-linux/kernel"
-ver="v7_2_3"
+ver="v7_2_10"
 
 gumboot() {
 	if ! [ -f "$path/gumboot/gumboot.lst" ]; then

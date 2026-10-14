@@ -4,15 +4,15 @@ pkgname=(
 	"$pkgbase-headers"
 )
 
-pkgver=7.2.3
-pkgrel=2
+pkgver=7.2.10
+pkgrel=1
 arch=('powerpc')
 url='https://wii-linux.org'
 license=(GPL-2.0-only)
 provides=(linux)
-_kernelname="v7_2_3"
-_out_name="v7_2_3"
-_modname="7.2.3-wii+"
+_kernelname="v7_2_10"
+_out_name="v7_2_10"
+_modname="7.2.10-wii+"
 install=wii-linux-kernel-7.2.install
 
 source=(
